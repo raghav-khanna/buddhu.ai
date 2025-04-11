@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from '../../components/global/Header';
 import MemoriesPanel from '../../components/MemoriesPanel';
 import MoodHistoryPanel from '../../components/MoodHistoryPanel';
@@ -20,10 +19,10 @@ function Home() {
           <div className="w-[50%] border border-accent rounded">Calendar</div>
         </div>
         <div className="w-screen flex flex-cols justify-around gap-4 p-6 h-[55vh]">
-          <div className="w-full border border-accent rounded">
+          <div className="w-full rounded">
             <MirrorCard />
           </div>
-          <div className="w-full border border-accent rounded">
+          <div className="w-full rounded">
             <MannKiBaatCard />
           </div>
         </div>
