@@ -7,23 +7,23 @@ import MannKiBaatCard from '../../components/MannKiBaatCard';
 
 function Home() {
   return (
-    <div className="bg-deepthought-primary text-deepthought-text min-h-screen font-body">
+    <div className="bg-primary text-text min-h-screen font-body">
       <Header />
       <div className="h-screen flex flex-col">
         <div className="w-screen flex justify-around gap-4 p-6 h-[35vh]">
-          <div className="w-full border rounded">
+          <div className="w-full border border-accent rounded">
             <MemoriesPanel />
           </div>
-          <div className="w-full border rounded">
+          <div className="w-full border border-accent rounded">
             <MoodHistoryPanel />
           </div>
-          <div className="w-[50%] border rounded">Calendar</div>
+          <div className="w-[50%] border border-accent rounded">Calendar</div>
         </div>
         <div className="w-screen flex flex-cols justify-around gap-4 p-6 h-[55vh]">
-          <div className="w-full border rounded">
+          <div className="w-full border border-accent rounded">
             <MirrorCard />
           </div>
-          <div className="w-full border rounded">
+          <div className="w-full border border-accent rounded">
             <MannKiBaatCard />
           </div>
         </div>
