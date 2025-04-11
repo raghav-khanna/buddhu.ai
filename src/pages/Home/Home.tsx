@@ -21,10 +21,10 @@ function Home() {
           </div>
         </div>
         <div className="w-screen flex flex-cols justify-around gap-4 p-6 h-[55vh]">
-          <div className="w-full border rounded-lg hover:ring-1 hover:bg-primary-hover">
+          <div className="w-full rounded-lg hover:ring-1 hover:bg-primary-hover">
             <MirrorCard />
           </div>
-          <div className="w-full border rounded-lg hover:ring-1 hover:bg-primary-hover">
+          <div className="w-full rounded-lg hover:ring-1 hover:bg-primary-hover">
             <MannKiBaatCard />
           </div>
         </div>
