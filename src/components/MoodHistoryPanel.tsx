@@ -7,31 +7,11 @@ import Normal from '../assets/Normal.png';
 
 function MoodHistoryPanel() {
   const moodImages: JSX.Element[] = [
-    <img
-      key="1"
-      src={Angry}
-      alt="Idea 1"
-      className="w-10 h-10 object-cover hover:w-15 hover:h-15"
-    />,
-    <img key="2" src={Sad} alt="Idea 1" className="w-10 h-10 object-cover hover:w-15 hover:h-15" />,
-    <img
-      key="3"
-      src={Normal}
-      alt="Idea 1"
-      className="w-10 h-10 object-cover hover:w-15 hover:h-15"
-    />,
-    <img
-      key="4"
-      src={Happy}
-      alt="Idea 1"
-      className="w-10 h-10 object-cover hover:w-15 hover:h-15"
-    />,
-    <img
-      key="5"
-      src={Excited}
-      alt="Idea 1"
-      className="w-10 h-10 object-cover hover:w-15 hover:h-15"
-    />
+    <img key="1" src={Angry} alt="Idea 1" className="w-10 h-auto object-cover hover:w-15" />,
+    <img key="2" src={Sad} alt="Idea 2" className="w-10 h-auto object-cover hover:w-15" />,
+    <img key="3" src={Normal} alt="Idea 3" className="w-10 h-auto object-cover hover:w-15" />,
+    <img key="4" src={Happy} alt="Idea 4" className="w-10 h-auto object-cover hover:w-15" />,
+    <img key="5" src={Excited} alt="Idea 5" className="w-10 h-auto object-cover hover:w-15" />
   ];
   const moodList: { day: string; mood: number }[] = [
     {

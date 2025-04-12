@@ -30,7 +30,7 @@ function MemoriesPanel() {
           <div className="w-3/5">Memory</div>
         </div>
         {/* {memories?.map((item) => ( */}
-        <div className="flex gap-[2vw] w-full font-medium bg-grey-text p-1">
+        <div className="flex gap-[2vw] w-full font-medium bg-card-content p-1">
           <div className="w-2/5">{memories[0].time}</div>
           <div className="w-3/5">{memories[0].memory}</div>
         </div>
@@ -38,7 +38,7 @@ function MemoriesPanel() {
           <div className="w-2/5">{memories[1].time}</div>
           <div className="w-3/5">{memories[1].memory}</div>
         </div>
-        <div className="flex gap-[2vw] w-full font-medium bg-grey-text p-1">
+        <div className="flex gap-[2vw] w-full font-medium bg-card-content p-1">
           <div className="w-2/5">{memories[2].time}</div>
           <div className="w-3/5">{memories[2].memory}</div>
         </div>
