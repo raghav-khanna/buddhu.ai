@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router';
+
 function MirrorCard() {
   const suggestions = [
     {
@@ -14,6 +16,12 @@ function MirrorCard() {
     }
   ];
 
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/theMirror');
+  };
+
   return (
     <div className="h-full rounded-lg w-full bg-primary-hover flex flex-col">
       <p className="font-medium text-lg border-b-1 border-accessible-green p-2 rounded-t-lg uppercase">
@@ -29,7 +37,9 @@ function MirrorCard() {
             );
           })}
         </div>
-        <div className="chatWrapper flex flex-grow border-l border-l-accessible-green hover:bg-accessible-green text-text w-1/10 justify-center h-full items-center object-cover rounded-br-lg text-xl font-bold">
+        <div
+          onClick={handleNavigate}
+          className="chatWrapper flex flex-grow border-l border-l-accessible-green hover:bg-accessible-green text-text w-1/10 justify-center h-full items-center object-cover rounded-br-lg text-xl font-bold">
           Chat
         </div>
       </div>
