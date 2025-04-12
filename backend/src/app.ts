@@ -4,8 +4,9 @@ import path from 'path';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import http from 'http';
+import { auth } from 'express-openid-connect';
 
-dotenv.config({ path: path.join(__dirname, '../.env') });
+dotenv.config({ path: path.join(__dirname, '/.env') });
 import { handleError } from './helpers/error';
 import httpLogger from './middlewares/httpLogger';
 import router from './routes/index';
@@ -16,6 +17,18 @@ app.use(httpLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.AUTH0_SECRET, // Secret from .env
+  baseURL: process.env.AUTH0_BASE_URL, // Base URL from .env
+  clientID: process.env.AUTH0_CLIENT_ID, // Client ID from .env
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL // Issuer Base URL from .env
+};
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
 
 app.use('/', router);
 
