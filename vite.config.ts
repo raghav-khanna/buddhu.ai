@@ -10,12 +10,8 @@ export default defineConfig({
   server: {
     https: {
       // Adjust paths if mkcert generated different filenames or you moved the files
-      key: fs.readFileSync(
-        path.resolve('C:/Users/ragha/Desktop/Files and Folders/Projects', 'localhost-key.pem')
-      ),
-      cert: fs.readFileSync(
-        path.resolve('C:/Users/ragha/Desktop/Files and Folders/Projects', 'localhost.pem')
-      )
+      key: fs.readFileSync(path.resolve('certs', 'localhost-key.pem')),
+      cert: fs.readFileSync(path.resolve('certs', 'localhost.pem'))
     },
     host: '0.0.0.0'
   }
