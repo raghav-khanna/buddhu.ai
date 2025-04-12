@@ -47,7 +47,7 @@ const mockApiResponse = [
   }
 ];
 
-const TheMirror = () => {
+const ChatInterface = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [input, setInput] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -173,4 +173,4 @@ const TheMirror = () => {
   );
 };
 
-export default TheMirror;
+export default ChatInterface;
