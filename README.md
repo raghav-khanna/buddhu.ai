@@ -2,8 +2,6 @@
 
 **Buddhu.ai** is a personalized journaling and emotional well-being platform that leverages intelligent conversations and memory tracking to help users reflect, grow, and understand themselves better. With a sleek interface, AI-powered chat, and timeline-based memory widgets, Buddhu.ai becomes your second brain — offering support, guidance, and insight based on your own thoughts.
 
-![image](https://github.com/user-attachments/assets/83dd7b1e-442e-4d2f-bc7a-70348ce104e4)
-
 ---
 
 ## ✨ Features
@@ -83,6 +81,7 @@ Both modes are synced to your timeline, mood logs, and suggestion engine.
 4. **Widgets & Analytics**
    - The frontend displays widgets based on MongoDB queries, including the streak calendar, mood chart, and memory summaries.
 
+![image](https://github.com/user-attachments/assets/83dd7b1e-442e-4d2f-bc7a-70348ce104e4)
 ---
 
 ## 📦 Features in Development
@@ -96,7 +95,7 @@ Both modes are synced to your timeline, mood logs, and suggestion engine.
 
 ## 📸 Screenshots / Demo
 
-_Coming soon._
+![image](https://github.com/user-attachments/assets/4137b49b-6cf5-4589-94ca-c28dc4246ac4)
 
 ---
 

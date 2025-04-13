@@ -13,16 +13,16 @@ const LoginButton = () => {
             <img src={Logo} alt="logo" style={{ width: '50px', height: '50px' }} />
             <p className="font-bold uppercase">Buddhu.ai</p>
           </div>
-          <div className="content flex flex-col items-center justify-center w-[20vw] my-0 mx-auto mt-30 ">
+          <div className="content flex flex-col items-center text-center justify-center w-[20vw] my-0 mx-auto mt-[10vh]">
             <p className="font-bold text-3xl text-text mb-4">Ready to start your journey today?</p>
-            <p className="text-contrast mb-4">
+            <p className="text-contrast mb-4 text-center">
               Signup to our website and start recording your daily thoughts and activities so you
               don't have to think hard.
             </p>
             <p className="font-bold text-text">We will remember it for you!</p>
             <button
               onClick={() => loginWithRedirect()}
-              className="bg-accessible-green px-4 py-2 rounded-md mt-8 cursor-pointer shadow-md hover:shadow-accent transition-all duration-500 flex items-center justify-center gap-2">
+              className="bg-accessible-green px-4 py-2 rounded-md mt-8 cursor-pointer shadow-md hover:shadow-accessible-green transition-all duration-500 flex items-center justify-center gap-2">
               <p>Login to Buddhu.ai</p>
               <img
                 src={RightArrow}
