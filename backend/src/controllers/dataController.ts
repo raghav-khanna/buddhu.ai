@@ -118,7 +118,7 @@ export const getAllChatSessions = async (req: Request, res: Response) => {
     if (chatSessionInfos === null) {
       // Check explicitly for null (user doc not found)
       return res
-        .status(404)
+        .status(200)
         .json({ success: false, message: `User chat history not found for ${username}` });
     }
     // --- Return the array of chat session info objects ---
