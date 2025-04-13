@@ -96,7 +96,7 @@ Both modes are synced to your timeline, mood logs, and suggestion engine.
 
 ## 📸 Screenshots / Demo
 
-_Coming soon._
+![image](https://github.com/user-attachments/assets/4137b49b-6cf5-4589-94ca-c28dc4246ac4)
 
 ---
 
