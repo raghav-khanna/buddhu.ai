@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Header from '../../components/global/Header';
+import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router';
 
 const mockApiResponse = [
   {
@@ -76,19 +79,38 @@ const chatHistory = [
 ];
 
 const TheMirror = () => {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<any[]>([]);
   const [input, setInput] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [listening, setListening] = useState(false);
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  const getChat = () => {
-    setMessages(mockApiResponse);
-  };
+  const { user, isLoading, isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    getChat();
-  }, []);
+    if (!isLoading && isAuthenticated && user) {
+      getChat();
+      console.log('User is authenticated');
+    } else if (!isLoading && !isAuthenticated) {
+      console.log('User is not authenticated');
+      navigate('/login');
+    }
+  }, [isLoading, isAuthenticated, user, navigate]);
+
+  const getChat = async () => {
+    try {
+      const response = await axios.get(`/api/alex/all-chats`);
+      if (response.status === 200) {
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching all chats');
+    }
+  };
+
+  // useEffect(() => {
+  // }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
