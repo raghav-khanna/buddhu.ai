@@ -125,7 +125,7 @@ function MannKiBaatCard() {
         </div>
         <div
           onClick={() => setOpenModal(true)}
-          className="chatWrapper flex border-l border-l-accessible-green hover:bg-accessible-green text-text w-1/10 justify-center h-full items-center rounded-br-lg text-lg font-bold text-center">
+          className="chatWrapper flex border-l border-l-accessible-green hover:bg-accessible-green text-text w-2/10 justify-center h-full items-center rounded-br-lg text-lg font-bold text-center">
           <div className="w-full p-2">Add to Journal</div>
         </div>
       </div>
@@ -147,7 +147,7 @@ function MannKiBaatCard() {
               id="description"
               value={journalEntry}
               onChange={(e) => setJournalEntry(e.target.value)}
-              rows={28}
+              rows={17}
               cols={95}
               className="rounded-md border-1 p-4 w-full h-full"
               placeholder="Welcome to your journal. Tell me how was your day?"
