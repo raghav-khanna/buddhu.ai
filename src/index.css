@@ -12,3 +12,21 @@
   --color-text-contrast: #b5b9bc;
   --color-text: #ffffff;
 }
+
+.p-dialog .p-dialog-header-icons {
+  gap: 1rem;
+}
+
+.p-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.p-dialog-footer button {
+  margin-right: 1rem;
+}
+
+.p-dialog-mask.p-component-overlay {
+  background-color: rgba(0, 0, 0, 0.8); /* Solid black */
+}
