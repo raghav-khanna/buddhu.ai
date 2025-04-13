@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 *.env
+env/
+__pycache__/
+chroma_store/
+test.py
