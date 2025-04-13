@@ -36,12 +36,14 @@ function MannKiBaatCard() {
               );
             })}
           </div>
-          <div className="chatbox w-full p-4 rounded-bl-lg hover:bg-accessible-green bg-card-content text-text text-center font-medium text-lg hover:text-xl">
-            Tell me about your day. Click here to type
+          <div
+            onClick={() => handleNavigate('/dailyChat')}
+            className="chatbox w-full p-4 rounded-bl-lg hover:bg-accessible-green bg-card-content text-text text-center font-medium text-lg hover:text-xl">
+            Tell me about your day. Click here to chat
           </div>
         </div>
         <div
-          onClick={() => handleNavigate('mannKiBaat')}
+          onClick={() => handleNavigate('/mannKiBaat')}
           className="chatWrapper flex border-l border-l-accessible-green hover:bg-accessible-green text-text w-1/10 justify-center h-full items-center rounded-br-lg text-lg font-bold text-center">
           <div className="w-full p-2">Add to Journal</div>
         </div>
