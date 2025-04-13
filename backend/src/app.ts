@@ -1,18 +1,22 @@
 import createError from 'http-errors';
 import express from 'express';
-import path from 'path';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import http from 'http';
 import { auth } from 'express-openid-connect';
+import connectDB from './config/database';
+import path from 'path';
 
-dotenv.config({ path: path.join(__dirname, '/.env') });
+const envPath = path.join(__dirname, '../.env');
+console.log(`Loading environment variables from ${envPath}`);
+dotenv.config({ path: path.join(__dirname, './.env') });
 import { handleError } from './helpers/error';
 import httpLogger from './middlewares/httpLogger';
 import router from './routes/index';
 
 const app: express.Application = express();
 
+connectDB();
 app.use(httpLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,7 +34,7 @@ const config = {
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
-app.use('/', router);
+app.use('/api', router);
 
 // catch 404 and forward to error handler
 app.use((_req, _res, next) => {

@@ -8,13 +8,29 @@ import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router';
 import Loader from '../../components/Loader';
+import axios from 'axios';
 
 function Home() {
   const { user, isLoading, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
 
+  const fetchExampleAPI = async () => {
+    try {
+      const response = await axios.get('/api'); // Replace with your API endpoint
+      if (response.status === 200) {
+        console.log('API data:', response.data);
+      } else {
+        console.error('Error fetching data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  // Log user details once authentication is confirmed and user data is available
   useEffect(() => {
     if (!isLoading && isAuthenticated && user) {
+      fetchExampleAPI();
       console.log('User is authenticated');
     } else if (!isLoading && !isAuthenticated) {
       console.log('User is not authenticated');
