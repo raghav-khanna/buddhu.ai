@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
 import { useRef, useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { FileUpload } from 'primereact/fileupload';
+import TypingText from './global/TypingText';
 
 function MannKiBaatCard() {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -14,16 +16,18 @@ function MannKiBaatCard() {
   const onUpload = () => {
     toast.current?.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
   };
-  const setup = [
+  const suggestions = [
     {
       id: 1,
-      question:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolore minima excepturi dolorem dignissimos voluptate expedita natus ut, odit maxime?'
+      question: 'One thing that made me smile today was…'
     },
     {
       id: 2,
-      question:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolore minima excepturi dolorem dignissimos voluptate expedita natus ut, odit maxime?'
+      question: 'If my future self wrote me a letter, it might say…'
+    },
+    {
+      id: 3,
+      question: 'One thing I want to change is…'
     }
   ];
 
@@ -56,24 +60,40 @@ function MannKiBaatCard() {
     </div>
   );
 
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  const DELAY_BETWEEN = 1200; // milliseconds
+  useEffect(() => {
+    if (visibleCount < suggestions.length) {
+      const timeout = setTimeout(() => {
+        setVisibleCount((prev) => prev + 1);
+      }, DELAY_BETWEEN);
+      return () => clearTimeout(timeout);
+    }
+  }, [visibleCount]);
+
   return (
     <div className="h-full rounded-lg w-full bg-primary-hover flex flex-col">
       <p className="font-medium text-lg border-b-1 border-accessible-green p-2 rounded-t-lg uppercase">
         mann ki baat
       </p>
       <div className="flex flex-grow justify-between w-full h-full items-start">
-        <div className="flex flex-col gap-1 w-[90%] h-full">
+        <div className="flex flex-col gap-1 w-[80%] h-full">
           <div className="overflow-y-hidden">
-            {setup.map((item: any) => {
+            {suggestions.slice(0, visibleCount).map((item: any) => {
               return (
-                <div className="border-1 border-dashed border-text-contrast p-4 m-4 rounded-md bg-card-content">
-                  <p className="text-text-contrast">{item.question}</p>
+                <div className="border-1 border-dashed border-text-contrast hover:border-accessible-green p-4 m-4 rounded-lg bg-card-content">
+                  <p className="text-text">
+                    <TypingText text={item.question} />
+                  </p>
                 </div>
               );
             })}
           </div>
-          <div className="chatbox w-full p-4 rounded-bl-lg hover:bg-accessible-green bg-card-content text-text text-center font-medium text-lg hover:text-xl">
-            Tell me about your day. Click here to type
+          <div
+            onClick={() => handleNavigate('/dailyChat')}
+            className="chatbox w-full p-4 rounded-bl-lg hover:bg-accessible-green bg-card-content text-text text-center font-medium text-lg hover:text-xl">
+            Tell me about your day. Click here to chat
           </div>
         </div>
         <div

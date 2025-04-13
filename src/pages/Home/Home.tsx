@@ -13,24 +13,22 @@ function Home() {
   const { user, isLoading, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
 
-  // Log user details once authentication is confirmed and user data is available
   useEffect(() => {
     if (!isLoading && isAuthenticated && user) {
       console.log('User is authenticated');
     } else if (!isLoading && !isAuthenticated) {
       console.log('User is not authenticated');
-      navigate('/login'); // Redirect to login if not authenticated
+      navigate('/login');
     }
-  }, [isLoading, isAuthenticated, user, navigate]); // Dependency array
+  }, [isLoading, isAuthenticated, user, navigate]);
 
-  // Handle loading state from the hook itself
   if (isLoading) {
     return <Loader />;
   } else if (!isLoading && isAuthenticated) {
     return (
       <div className="bg-primary text-text min-h-screen font-body">
         <Header />
-        <div className="h-full flex flex-col gap-1 pb-8">
+        <div className="h-full flex flex-col gap-1 pb-8 fill-accessible-green drop-shadow-md drop-shadow-accessible-green">
           <div className="w-screen flex justify-around gap-4 px-6 pt-4 min-h-fit">
             <div className="w-full rounded-lg hover:ring-1 hover:bg-primary-hover">
               <MemoriesPanel />

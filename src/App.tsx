@@ -5,6 +5,7 @@ import MannKiBaat from './pages/MannKiBaat/MannKiBaat';
 import LoginButton from './pages/Login/Login';
 import RootRedirect from './components/global/RootRedirect';
 import { PrimeReactProvider } from 'primereact/api';
+import ChatInterface from './pages/MannKiBaat/ChatInterface';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/theMirror" element={<TheMirror />} />
         <Route path="/mannKiBaat" element={<MannKiBaat />} />
+        <Route path="/dailyChat" element={<ChatInterface />} />
         <Route path="/login" element={<LoginButton />} />
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
