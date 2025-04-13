@@ -51,8 +51,10 @@ function MoodHistoryPanel() {
       <div className="flex w-full justify-around h-[80%] items-center p-2">
         {moodList?.map((item) => (
           <div className="flex flex-col items-center gap-2 hover:drop-shadow-2xl">
-            <div>{moodImages[item.mood - 1]}</div>
-            <div className="text-sm">{item.day}</div>
+            <div className="fill-accessible-green drop-shadow-md drop-shadow-accessible-green">
+              {moodImages[item.mood - 1]}
+            </div>
+            <div className="text-sm ">{item.day}</div>
           </div>
         ))}
       </div>

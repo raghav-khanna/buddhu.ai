@@ -45,14 +45,14 @@ function Header({ title, back }: headerProps) {
   }, [isLoading, isAuthenticated, user, navigate]);
 
   return (
-    <div className="border-b-1 flex justify-between items-center p-2">
+    <div className="border-b-1 flex justify-between items-center p-2 sticky">
       <div className="flex items-center py-2">
         {back && <ArrowLeftIcon className="ml-4 w-8 h-auto" onClick={handleBack} />}
         <p className=" pl-4 font-bold text-3xl text-[#02B075]">{title || 'Budhhu.ai'}</p>
       </div>
       {!isOpen ? (
         <div
-          className="bg-card-content p-2 mr-2 flex gap-2 items-center rounded-lg"
+          className="bg-card-content p-2 mr-2 flex gap-2 items-center rounded-lg fill-accessible-green drop-shadow-md drop-shadow-accessible-green"
           onClick={() => setIsOpen(!isOpen)}>
           {userIcon}
           <div className="capitalize">{user?.name?.split(' ')[0].toLowerCase()}</div>
@@ -60,7 +60,7 @@ function Header({ title, back }: headerProps) {
       ) : (
         <button
           ref={menuRef}
-          className="bg-card-content h-12 p-2 min-w-25 mr-2 gap-2 items-center rounded-lg flex justify-center"
+          className="bg-card-content h-12 p-2 min-w-25 mr-2 gap-2 items-center rounded-lg flex justify-center fill-accent drop-shadow-md drop-shadow-accent"
           onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
           <div className="capitalize">LogOut</div>
         </button>
