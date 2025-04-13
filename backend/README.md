@@ -12,14 +12,7 @@ A scalable Node.js backend service for the **BuddhuAI** application, built with 
 
 The project follows a **3-layer architecture**:
 
-src/
-├── routes/ # API route definitions
-├── controllers/ # Request/response handling logic
-├── services/ # Business/data logic & external API calls
-├── models/ # Mongoose schemas for MongoDB
-├── config/ # Database and environment config
-├── utils/ # Logging and helpers
-├── app.ts # Express app initialization
+<pre> ```plaintext src/ ├── routes/ # API route definitions ├── controllers/ # Request/response handling logic ├── services/ # Business/data logic & external API calls ├── models/ # Mongoose schemas for MongoDB ├── config/ # Database and environment config ├── utils/ # Logging and helpers ├── app.ts # Express app initialization ``` </pre>
 
 ### Highlights
 
