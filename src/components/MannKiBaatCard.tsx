@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { FileUpload } from 'primereact/fileupload';
 import TypingText from './global/TypingText';
+import { useNavigate } from 'react-router';
 
 function MannKiBaatCard() {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [journalEntry, setJournalEntry] = useState<string>('');
-
+  const navigate = useNavigate();
   const toast = useRef<Toast>(null);
 
   const onUpload = () => {
@@ -34,6 +34,10 @@ function MannKiBaatCard() {
   const handleSave = () => {
     setOpenModal(false);
     setJournalEntry('');
+  };
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
   };
 
   const footerContent = (
