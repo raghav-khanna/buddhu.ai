@@ -1,16 +1,20 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import TypingText from './global/TypingText';
 
 function MannKiBaatCard() {
-  const setup = [
+  const suggestions = [
     {
       id: 1,
-      question:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolore minima excepturi dolorem dignissimos voluptate expedita natus ut, odit maxime?'
+      question: 'One thing that made me smile today was…'
     },
     {
       id: 2,
-      question:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolore minima excepturi dolorem dignissimos voluptate expedita natus ut, odit maxime?'
+      question: 'If my future self wrote me a letter, it might say…'
+    },
+    {
+      id: 3,
+      question: 'One thing I want to change is…'
     }
   ];
 
@@ -20,18 +24,32 @@ function MannKiBaatCard() {
     navigate(path);
   };
 
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  const DELAY_BETWEEN = 1200; // milliseconds
+  useEffect(() => {
+    if (visibleCount < suggestions.length) {
+      const timeout = setTimeout(() => {
+        setVisibleCount((prev) => prev + 1);
+      }, DELAY_BETWEEN);
+      return () => clearTimeout(timeout);
+    }
+  }, [visibleCount]);
+
   return (
     <div className="h-full rounded-lg w-full bg-primary-hover flex flex-col">
       <p className="font-medium text-lg border-b-1 border-accessible-green p-2 rounded-t-lg uppercase">
         mann ki baat
       </p>
       <div className="flex flex-grow justify-between w-full h-full items-start">
-        <div className="flex flex-col gap-1 w-[90%] h-full">
+        <div className="flex flex-col gap-1 w-[80%] h-full">
           <div className="overflow-y-hidden">
-            {setup.map((item: any) => {
+            {suggestions.slice(0, visibleCount).map((item: any) => {
               return (
-                <div className="border-1 border-dashed border-text-contrast p-4 m-4 rounded-md bg-card-content">
-                  <p className="text-text-contrast">{item.question}</p>
+                <div className="border-1 border-dashed border-text-contrast hover:border-accessible-green p-4 m-4 rounded-lg bg-card-content">
+                  <p className="text-text">
+                    <TypingText text={item.question} />
+                  </p>
                 </div>
               );
             })}
@@ -44,7 +62,7 @@ function MannKiBaatCard() {
         </div>
         <div
           onClick={() => handleNavigate('/mannKiBaat')}
-          className="chatWrapper flex border-l border-l-accessible-green hover:bg-accessible-green text-text w-1/10 justify-center h-full items-center rounded-br-lg text-lg font-bold text-center">
+          className="chatWrapper flex border-l border-l-accessible-green hover:bg-accessible-green text-text w-2/10 justify-center h-full items-center rounded-br-lg text-lg font-bold text-center">
           <div className="w-full p-2">Add to Journal</div>
         </div>
       </div>
