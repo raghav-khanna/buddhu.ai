@@ -4,10 +4,11 @@ import TheMirror from './pages/TheMirror/TheMirror';
 import MannKiBaat from './pages/MannKiBaat/MannKiBaat';
 import LoginButton from './pages/Login/Login';
 import RootRedirect from './components/global/RootRedirect';
+import { PrimeReactProvider } from 'primereact/api';
 
 function App() {
   return (
-    <>
+    <PrimeReactProvider>
       <Routes>
         <Route path="/" element={<RootRedirect />} />
         <Route path="/home" element={<Home />} />
@@ -16,7 +17,7 @@ function App() {
         <Route path="/login" element={<LoginButton />} />
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
-    </>
+    </PrimeReactProvider>
   );
 }
 
