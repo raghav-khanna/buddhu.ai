@@ -8,7 +8,7 @@ ca = certifi.where()
 from dotenv import load_dotenv
 
 client = MongoClient(
-   os.getenv("MONGODB"),
+    os.getenv("MONGODB"),
     tlsCAFile=ca,
 )
 
@@ -51,16 +51,33 @@ def get_chat_history(chatid, username):
     print(response)
     return response.get(chatid)
 
-def append_journal(username, data, metadata):
-    query_filter = {"username": username, "date":str(datetime.date.today())}
-    update = {
-        "$push": {"journal": data},
-        "$set": {}
+def append_journal(username, data, metadata=None):
+    today = str(datetime.date.today())
+    
+    query_filter = {
+        "username": username,
+        "date": today
     }
+
+    update = {
+        "$push": {
+            "journal": data
+        },
+        "$setOnInsert": {
+            "username": username,
+            "date": today
+        }
+    }
+
     if metadata:
-        update["$set"]["metadata"] = metadata
-    journal.update_one(query_filter, update, upsert=True)
-    return True
+        update["$set"] = {"metadata": metadata}
+
+    result = journal.update_one(query_filter, update, upsert=True)
+
+    print("✅ Matched:", result.matched_count)
+    print("✅ Modified:", result.modified_count)
+    return result.acknowledged
+
 
 if __name__ == "__main__":
     chat = {
