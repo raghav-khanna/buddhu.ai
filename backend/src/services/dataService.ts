@@ -74,42 +74,73 @@ export const fetchChatSessionById = async (
   }
 };
 
-export const fetchJournalDatesForMonthStreak = async (username: string): Promise<string[]> => {
-  // --- Return type changed to string[] ---
+export const fetchJournalDatesForMonthStreak = async (
+  // --- Renamed function ---
+  username: string
+): Promise<string[] | null> => {
+  // Return type is string[] | null
   try {
+    const query = { username };
+    Logger.debug(
+      `[DataService] Fetching user history doc for current month chat dates: ${JSON.stringify(
+        query
+      )}`
+    );
+    // Fetch the user document containing all chats
+    const userHistoryDoc = await UserChatHistory.findOne(query).lean();
+
+    if (!userHistoryDoc) {
+      Logger.warn(
+        `[DataService] No user history document found for user ${username} while fetching chat dates.`
+      );
+      return null; // User not found
+    }
+
+    // --- Determine current month boundaries ---
     const now = new Date();
     const startDate = startOfMonth(now);
     const endDate = endOfMonth(now);
-
-    // --- Format dates for string comparison ---
+    // Format boundaries for string comparison (safe for YYYY-MM-DD)
     const startDateString = format(startDate, 'yyyy-MM-dd');
     const endDateString = format(endDate, 'yyyy-MM-dd');
+    // --- End Date Boundaries ---
 
-    // --- Query using string dates (relies on YYYY-MM-DD lexicographical sorting) ---
-    const query = {
-      username: username,
-      date: { $gte: startDateString, $lte: endDateString }
-    };
-    // --- End Query Update ---
+    const datesInMonth: string[] = [];
+    const knownKeys = ['_id', 'username', 'createdAt', 'updatedAt', '__v']; // Keys to ignore
 
-    Logger.debug(
-      `[DataService] Fetching journal dates for streak with query: ${JSON.stringify(query)}`
-    );
+    // --- Iterate over the dynamic chatID keys in the document ---
+    for (const key in userHistoryDoc) {
+      // Skip prototype properties and known static fields
+      if (!Object.prototype.hasOwnProperty.call(userHistoryDoc, key) || knownKeys.includes(key)) {
+        continue;
+      }
 
-    const entries = await JournalEntry.find(query).select('date').lean();
-    // --- Return date strings directly ---
-    const dateStrings = entries.map((entry) => entry.date);
-    // --- End Return Update ---
+      // Assume the key is a chatId, get the chat entry object
+      const entry = userHistoryDoc[key] as IChatEntry;
+
+      // --- Check if entry date exists and falls within the current month ---
+      if (entry && typeof entry.date === 'string') {
+        // Direct string comparison works for YYYY-MM-DD format
+        if (entry.date >= startDateString && entry.date <= endDateString) {
+          datesInMonth.push(entry.date);
+        }
+      }
+      // --- End Date Check ---
+    }
+    // --- End Iteration ---
+
+    // Optional: Sort dates if needed
+    // datesInMonth.sort();
 
     Logger.info(
-      `[DataService] Found ${dateStrings.length} journal dates (strings) for user ${username} in current month streak`
+      `[DataService] Found ${datesInMonth.length} chat dates (strings) for user ${username} in current month`
     );
-    return dateStrings;
+    return datesInMonth;
   } catch (error: any) {
     Logger.error(
-      `[DataService] Error fetching journal streak dates for ${username}: ${error.message}`
+      `[DataService] Error fetching chat dates for current month for ${username}: ${error.message}`
     );
-    throw new Error(`Database error fetching streak dates: ${error.message}`);
+    throw new Error(`Database error fetching chat dates for current month: ${error.message}`);
   }
 };
 

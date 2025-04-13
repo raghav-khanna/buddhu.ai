@@ -64,7 +64,7 @@ export const getJournalStreakDates = async (req: Request, res: Response): Promis
     // --- Service now returns string[] ---
     const dateStrings = await dataService.fetchJournalDatesForMonthStreak(username);
     // --- End Service Call ---
-    res.status(200).json({ success: true, count: dateStrings.length, data: dateStrings });
+    res.status(200).json({ success: true, count: dateStrings?.length, data: dateStrings });
   } catch (error: any) {
     handleControllerError(res, error, `Failed to fetch journal streak dates for ${username}`);
   }
@@ -118,7 +118,7 @@ export const getAllChatSessions = async (req: Request, res: Response) => {
     if (chatSessionInfos === null) {
       // Check explicitly for null (user doc not found)
       return res
-        .status(404)
+        .status(200)
         .json({ success: false, message: `User chat history not found for ${username}` });
     }
     // --- Return the array of chat session info objects ---
