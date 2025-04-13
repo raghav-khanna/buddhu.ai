@@ -2,9 +2,9 @@ Sure! Here's the complete content you can copy directly into your repository's `
 
 ---
 
-# 🧠 EchoAI Backend Service
+# 🧠 BuddhuAI Backend Service
 
-A scalable Node.js backend service for the **EchoAI** application, built with TypeScript and Express.js. This service acts as the core engine handling client requests, integrating with MongoDB, external LLMs (via **Gemini API**), and user authentication via **Auth0**.
+A scalable Node.js backend service for the **BuddhuAI** application, built with TypeScript and Express.js. This service acts as the core engine handling client requests, integrating with MongoDB, external LLMs (via **Gemini API**), and user authentication via **Auth0**.
 
 ---
 
@@ -58,7 +58,7 @@ PORT=8000
 FRONTEND_URL=https://localhost:5173
 
 # MongoDB
-MONGODB_URI="mongodb+srv://<username>:<password>@<cluster>/echoai?retryWrites=true&w=majority"
+MONGODB_URI="mongodb+srv://<username>:<password>@<cluster>/BuddhuAI?retryWrites=true&w=majority"
 
 # Gemini API
 GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
