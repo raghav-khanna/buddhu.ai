@@ -3,7 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-import { FileUpload } from 'primereact/fileupload';
+import { FileUpload, FileUploadHandlerEvent } from 'primereact/fileupload';
 import TypingText from './global/TypingText';
 import { useNavigate } from 'react-router';
 
@@ -40,10 +40,23 @@ function MannKiBaatCard() {
     navigate(path);
   };
 
+  const customBase64Uploader = async (event: FileUploadHandlerEvent) => {
+    // convert file to base64 encoded
+    const file = event.files[0];
+    const reader = new FileReader();
+    let blob = await fetch(file.objectURL).then((r) => r.blob()); //blob:url
+
+    reader.readAsDataURL(blob);
+
+    reader.onloadend = function () {
+      const base64data = reader.result;
+    };
+  };
+
   const footerContent = (
     <div className="flex items-center gap-2">
       <Toast ref={toast}></Toast>
-      <FileUpload
+      {/* <FileUpload
         mode="basic"
         name="demo[]"
         url="/api/upload"
@@ -51,6 +64,16 @@ function MannKiBaatCard() {
         maxFileSize={1000000}
         onUpload={onUpload}
         auto
+        chooseLabel=" Add file"
+        className="rounded-md bg-accent text-text cursor-pointer px-4 py-2"
+      /> */}
+      <FileUpload
+        mode="basic"
+        name="demo[]"
+        url="/api/upload"
+        accept="image/*"
+        customUpload
+        uploadHandler={customBase64Uploader}
         chooseLabel=" Add file"
         className="rounded-md bg-accent text-text cursor-pointer px-4 py-2"
       />
