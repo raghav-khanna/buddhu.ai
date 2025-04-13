@@ -30,3 +30,30 @@
 .p-dialog-mask.p-component-overlay {
   background-color: rgba(0, 0, 0, 0.8); /* Solid black */
 }
+
+@layer utilities {
+  /* Thin and styled scrollbar */
+  .thin-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #02b274; /* Customize color */
+    border-radius: 9999px;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #008b5b;
+  }
+
+  /* For Firefox */
+  .thin-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #02b274 transparent;
+  }
+}
