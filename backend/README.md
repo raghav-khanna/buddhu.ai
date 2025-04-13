@@ -1,4 +1,3 @@
-Sure! Here's the complete content you can copy directly into your repository's `README.md` file:
 
 ---
 
